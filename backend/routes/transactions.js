@@ -4,7 +4,6 @@ const admin = require("firebase-admin");
 
 router.post("/addTransaction", async (req, res) => {
   const { userId, type, xData } = req.body;
-  console.log("add transaction api: ", xData, userId, type);
   try {
     const firestore = admin.firestore();
     const collectionName = type === "income" ? "income" : "expense";
