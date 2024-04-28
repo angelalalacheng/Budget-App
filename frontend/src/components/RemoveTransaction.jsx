@@ -27,7 +27,7 @@ const RemoveTransaction = ({ transactionType, transaction, onRemove }) => {
         className="btn btn-sm btn-outline-danger"
         onClick={() => setShowConfirmation(true)}
       >
-        <i className="bi bi-trash3-fill"></i>
+        Delete
       </button>
 
       <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>

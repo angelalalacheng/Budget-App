@@ -135,7 +135,7 @@ const Transactions = ({ transactionType }) => {
                         className="btn btn-sm btn-outline-success me-2"
                         onClick={() => handleEditTransaction(transaction)}
                       >
-                        <i className="bi bi-pencil-square"></i>
+                        Update
                       </button>
                       <RemoveTransaction
                         transactionType={transactionType}
