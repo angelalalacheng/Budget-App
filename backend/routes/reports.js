@@ -38,12 +38,12 @@ const fetchTranscationsData = async (userId, type, startDate, endDate) => {
   const transactionsCollectionRef = firestore.collection(collectionName);
 
   try {
-    const query = await transactionsCollectionRef
+    const query = transactionsCollectionRef
       .where("userId", "==", userId)
       .where("date", ">=", startDate)
       .where("date", "<=", endDate);
 
-    const transactionsSnapShot = query.get();
+    const transactionsSnapShot = await query.get();
     const transactions = transactionsSnapShot.docs.map((doc) => doc.data());
 
     // Prepare an object to store the transactions grouped by category

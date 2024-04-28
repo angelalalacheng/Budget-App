@@ -221,7 +221,7 @@ const EditTransaction = ({ transactionType }) => {
                         </>
                       ) : (
                         <>
-                          <option value="Groceries">Groceries</option>
+                          <option value="groceries">Groceries</option>
                           <option value="Health">Health</option>
                           <option value="Transport">Transport</option>
                           <option value="Accommodation">Accommodation</option>
