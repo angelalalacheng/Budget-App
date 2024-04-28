@@ -43,7 +43,7 @@ const AddTransaction = ({ transactionType }) => {
 
     try {
       const response = await axios.post("/addTransaction", {
-        transactionData,
+        xData: transactionData,
         userId: user.uid,
         type: transactionType,
       });

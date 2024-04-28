@@ -21,7 +21,7 @@ const Transactions = ({ transactionType }) => {
   const [alertType, setAlertType] = useState(null);
   const [alertMessage, setAlertMessage] = useState("");
 
-  /****************************Task 9: Hook and functions****************************/
+  /****************************Hook and functions****************************/
   useEffect(() => {
     setIsLoading(true); // Set loading state to true while data is fetched
     // Fetch all transcations from Firestore for the current user
@@ -45,27 +45,26 @@ const Transactions = ({ transactionType }) => {
         setAlertMessage("Transactions could not be retrieved.");
         setIsLoading(false); // Set loading state to false if there's an error
       }
-      fetchTransactions();
-      setIsLoading(false); // Set loading state to false after data is fetched
     };
+    fetchTransactions();
   }, [user, transactionType]);
 
   const handleEditTransaction = (transaction) => {
     // Generate the URL for the EditTransaction component with the income/expense data as a parameter
-    let editTransactionUrl = `/edit${transactionType}?id=${transaction.formId}`;
+    let editTransactionUrl = `/edit${transactionType}?id=${transaction.id}`;
 
     // Navigate to the EditIncome component
     navigate(editTransactionUrl);
   };
 
   const handleRemoveTransaction = (transaction) => {
-    // Remove the transaction from the transactions list
     setTransactions((prevIncome) =>
-      prevIncome.filter((tran) => tran.formId !== transaction.formId)
+      // Filter out the transaction to be removed from the transactions list
+      prevIncome.filter((tran) => tran.id !== transaction.id)
     );
   };
 
-  /****************************Task 9: Hook and functions****************************/
+  /****************************Hook and functions****************************/
 
   return (
     <div>
@@ -122,7 +121,7 @@ const Transactions = ({ transactionType }) => {
               </thead>
               <tbody>
                 {transactions.map((transaction) => (
-                  <tr key={transaction.formId}>
+                  <tr key={transaction.id}>
                     <td>{transaction.date}</td>
                     <td>
                       {transaction.category.charAt(0).toUpperCase() +

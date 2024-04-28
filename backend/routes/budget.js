@@ -55,6 +55,9 @@ router.post("/getBudget", async (req, res) => {
 
     if (!querySnapshot.empty) {
       const budgetData = querySnapshot.docs[0].data();
+
+      console.log("Updated budget data :", budgetData);
+
       res.json({ success: true, budgetData });
     } else {
       // If the document doesn’t exist, return all fields as 0
@@ -67,7 +70,7 @@ router.post("/getBudget", async (req, res) => {
         other: 0,
       };
 
-      console.log("Budget data:", budgetData);
+      console.log("Initial budget data :", budgetData);
 
       res.json({ success: true, budgetData });
     }

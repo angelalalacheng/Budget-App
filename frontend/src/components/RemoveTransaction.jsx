@@ -10,7 +10,7 @@ const RemoveTransaction = ({ transactionType, transaction, onRemove }) => {
   const handleRemove = async () => {
     try {
       await axios.delete(
-        `/deleteTransaction?type=${transactionType}&id=${transaction.formId}`
+        `/deleteTransaction?type=${transactionType}&id=${transaction.id}`
       );
 
       // Call the onRemove function to update the frontend state

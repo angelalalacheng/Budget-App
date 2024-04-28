@@ -1,18 +1,17 @@
-const e = require("express");
 const express = require("express");
 const router = express.Router();
 const admin = require("firebase-admin");
 
 router.post("/addTransaction", async (req, res) => {
-  const { userId, type, transcationData } = req.body;
-
+  const { userId, type, xData } = req.body;
+  console.log("add transaction api: ", xData, userId, type);
   try {
     const firestore = admin.firestore();
     const collectionName = type === "income" ? "income" : "expense";
 
     await firestore
       .collection(collectionName)
-      .add({ userId: userId, ...transcationData });
+      .add({ userId: userId, ...xData });
 
     res.json({ success: true });
   } catch (error) {
@@ -47,9 +46,9 @@ router.get("/getTransaction", async (req, res) => {
   }
 });
 router.post("/getAllTransactions", async (req, res) => {
-  const { userId, type } = req.body;
-
   try {
+    const { userId, type } = req.body;
+
     const firestore = admin.firestore();
     const collectionName = type === "income" ? "income" : "expense";
     const transactionsRef = firestore.collection(collectionName);
@@ -58,12 +57,12 @@ router.post("/getAllTransactions", async (req, res) => {
       .where("userId", "==", userId)
       .get();
 
-    const transactions = querySnapshot.docs.map((doc) => ({
+    const userTransactions = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
 
-    res.json({ success: true, transactions });
+    res.json({ success: true, userTransactions });
   } catch (error) {
     console.error("Error getting all transaction data:", error);
     res.status(500).json({ success: false });
