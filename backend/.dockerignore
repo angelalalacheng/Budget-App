@@ -1,0 +1,6 @@
+node_modules/
+Dockerfile
+serviceAccountKey.json
+.git
+.gitignore
+.env

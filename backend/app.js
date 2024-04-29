@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const admin = require("firebase-admin");
 const cors = require("cors");
@@ -9,11 +10,13 @@ const app = express();
 app.use(cors());
 
 // Firebase Admin SDK setup
-const serviceAccount = require("./serviceAccountKey.json");
+// const serviceAccount = require("./serviceAccountKey.json");
 
 // Add necessary configurations
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(
+    JSON.parse(process.env.FIREBASE_PRIVATE_KEY_JSON)
+  ),
 });
 
 app.use(bodyParser.json());
