@@ -13,7 +13,6 @@ const EditTransaction = ({ transactionType }) => {
   /********************Authentication and state variables*******************/
 
   const initialState = {
-    id: null,
     date: "",
     category: "",
     amount: 0,
@@ -47,7 +46,7 @@ const EditTransaction = ({ transactionType }) => {
 
         if (response.data.success) {
           // Populate the form with the fetched transaction data
-          setTransactionData({ ...response.data.transaction, id });
+          setTransactionData({ id, ...response.data.xData });
           setIsLoading(false);
         } else {
           setAlertType("error");
@@ -215,20 +214,20 @@ const EditTransaction = ({ transactionType }) => {
                       <option value="">Select Category</option>
                       {transactionType === "income" ? (
                         <>
-                          <option value="Salary">Salary</option>
-                          <option value="Freelance">Freelance</option>
-                          <option value="Loan">Loan</option>
+                          <option value="salary">Salary</option>
+                          <option value="freelance">Freelance</option>
+                          <option value="loan">Loan</option>
                         </>
                       ) : (
                         <>
                           <option value="groceries">Groceries</option>
-                          <option value="Health">Health</option>
-                          <option value="Transport">Transport</option>
-                          <option value="Accommodation">Accommodation</option>
+                          <option value="health">Health</option>
+                          <option value="transport">Transport</option>
+                          <option value="accommodation">Accommodation</option>
                         </>
                       )}
-                      <option value="Gift">Gift</option>
-                      <option value="Other">Other</option>
+                      <option value="gift">Gift</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
                   <div className="mb-3">

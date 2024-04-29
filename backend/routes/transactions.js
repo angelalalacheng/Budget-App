@@ -33,8 +33,8 @@ router.get("/getTransaction", async (req, res) => {
       .get();
 
     if (transactionDoc.exists) {
-      const transactionData = transactionDoc.data();
-      res.json({ success: true, transactionData });
+      const xData = transactionDoc.data();
+      res.json({ success: true, xData });
     } else {
       console.error("Transactions not found.");
       res.status(404).json({ success: false });
